@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GamesComponent } from './games.component';
 import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [GamesComponent],
@@ -13,6 +14,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
       component: GamesComponent
     }]),
     TabsModule.forRoot()
-  ]
+  ],
+  providers: [DataService]
 })
 export class GamesModule { }

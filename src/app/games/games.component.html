@@ -1,8 +1,34 @@
-<div>
+<div class="games-list bg-light">
   <tabset>
-    <tab heading="Basic title" id="tab1">Basic content</tab>
-    <tab heading="Basic Title 1">Basic content 1</tab>
-    <tab heading="Basic Title 2">Basic content 2</tab>
+    <tab [heading]="categoryGame.name" *ngFor="let categoryGame of gamesCategories">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let game of categoryGame._embedded.games">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <b>{{game.name}}</b>
+              </div>
+              <img 
+                [src]="game.thumbnail"
+                class="card-img-top" 
+                data-holder-rendered="true"
+              >
+              <div class="ribbon-container" *ngIf="game.meta.bonus">
+                <span class="ribbon">Bonus <b>ON</b></span>
+              </div>
+              <div class="card-body">
+                <p class="card-text" *ngIf="game.meta.free_spins">
+                  Free Spins
+                </p>
+                <p class="card-text" *ngIf="game.meta.currency">
+                  Earn in {{game.meta.currency}}
+                </p>
+                <button type="button" class="btn btn-lg btn-block btn-primary">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
   </tabset>
 </div>
- 

@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamesComponent } from './games.component';
+import { RouterModule } from '@angular/router';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [GamesComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild([{
+      path: '',
+      component: GamesComponent
+    }]),
+    TabsModule.forRoot()
   ]
 })
 export class GamesModule { }

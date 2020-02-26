@@ -14,6 +14,16 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
+  getGameById(id: string): Observable<any[]> {
+    return this.http.get<any>(`${this.url}/games/${id}?brand=cherrycasino.desktop&locale=en`)
+    .pipe(
+      tap(result => {
+        console.log('retrieving data from server:', result)
+      }),
+      catchError(err => this.handleHttpError(err))
+    );
+  }
+
   getGameCategories(): Observable<any[]> {
     return this.http.get<any>(`${this.url}/game-categories?brand=cherrycasino.desktop&locale=en`)
     .pipe(

@@ -1,5 +1,6 @@
-import { DataService } from './data.service';
+import { DataService } from '../data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-games',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesComponent implements OnInit {
   public gamesCategories = [];
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private router: Router) { }
 
   ngOnInit() {
     this.gamesCategories = [
@@ -1051,6 +1053,10 @@ export class GamesComponent implements OnInit {
     // }, error => {
     //   console.log(error);
     // });
+  }
+
+  onViewDetails(id) {
+    this.router.navigateByUrl('/games/'+id);
   }
 
 }

@@ -27,7 +27,10 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   private loadData() {
     this.isLoading = true;
-    this.dataService.getGameCategories().pipe(takeWhile(() => this.componentActive)).subscribe((data: any) => {
+    this.dataService.getGameCategories()
+    .pipe(takeWhile(() => this.componentActive))
+    .subscribe((data: any) => {
+      console.log('here!');
       this.gamesCategories = data;
       this.isLoading = false;
     }, error => {

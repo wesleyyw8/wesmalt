@@ -17,7 +17,7 @@ export class DataService {
     });
   }
 
-  clearCache() {
+  private clearCache() {
     this.gamesCategories$ = null;
     console.log('cleaning cache');
   }

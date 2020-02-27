@@ -90,7 +90,8 @@ export class GameDetailComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
-    const gameId = this.route.snapshot.params['id'];
+    const gameId = this.route.snapshot.params['id']
+    
     this.isLoading = true;
     this.dataService.getGameById(gameId)
     .pipe(takeWhile(() => this.componentActive))

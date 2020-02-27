@@ -1,12 +1,12 @@
-import { FormsModule } from '@angular/forms';
-import { DataService } from './../data.service';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GameDetailComponent } from './game-detail.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { DataService } from '../data.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { of } from 'rxjs';
-import { detectChanges } from '@angular/core/src/render3';
+import { doesNotThrow } from 'assert';
 
 describe('GameDetailComponent', () => {
   let component: GameDetailComponent;
@@ -53,6 +53,7 @@ describe('GameDetailComponent', () => {
         free_spins: true
       }
     }));
+    
   }));
 
   beforeEach(() => {

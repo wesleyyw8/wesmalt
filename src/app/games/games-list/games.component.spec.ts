@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GamesComponent } from './games.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 
 describe('GamesComponent', () => {
   let component: GamesComponent;
@@ -20,7 +21,7 @@ describe('GamesComponent', () => {
     mockRouter = jasmine.createSpyObj(['navigateByUrl']);
 
     TestBed.configureTestingModule({
-      imports: [FormsModule, TabsModule.forRoot(), SharedModule],
+      imports: [FormsModule,   TabsModule.forRoot(), SharedModule],
       declarations: [ GamesComponent ],
       providers: [{
         provide: DataService,

@@ -20,6 +20,6 @@ npm run test
 It has unit test and integrated tests  
 
 # Check live application:
-https://maltaletsgo.herokuapp.com/games
+https://maltaletsgo.herokuapp.com/games  
 dist folder is removed from gitignore because of heroku
 

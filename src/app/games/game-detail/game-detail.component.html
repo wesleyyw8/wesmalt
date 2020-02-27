@@ -39,7 +39,12 @@
 <div class="loader-container" *ngIf="isLoading">
   <app-loader></app-loader>
 </div>
-
-<div *ngIf="errorFromServer">
-  Error retrieving data from server. Please refresh the page
+<div class="error-container" *ngIf="errorFromServer">
+  <p>
+    Error retrieving data from server. Please refresh the page
+  </p>
+  <button 
+  type="button" 
+  (click)="goBack()"
+  class="btn btn-lg btn-primary">Go back</button>
 </div>

@@ -1,4 +1,6 @@
 <nav class="navbar navbar-light bg-dark">
   <span class="navbar-brand mb-0 h1 text-white">Wesley!</span>
 </nav>
-<router-outlet></router-outlet>
+<div [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <router-outlet #o="outlet"></router-outlet>
+</div>

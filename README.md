@@ -1,27 +1,25 @@
 # Malangular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+This is an angular project with:  
 
-## Development server
+* Create a good architecture (go for small components & use multiple modules where it
+makes sense): done  
+* Use Sass (preferably SCSS syntax) for your CSS needs: done (with less)  
+* Make a responsive design: done  
+* Create some unit tests (would be nice to see end to end tests as well): done  
+* Cache the API resources: done  
+* Use animations (mix of Angular animations and pure CSS animations would be nice): done (only angular animations tho)  
+* Use Angular routing/lazy loading.: done  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# To run the application locally: 
+npm install  
+npm run startlocal
 
-## Code scaffolding
+# To run the tests: 
+npm run test  
+It has unit test and integrated tests  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Check live application:
+dist folder is removed from gitignore because of heroku
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+aaa

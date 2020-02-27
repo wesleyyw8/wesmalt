@@ -20,10 +20,29 @@ export class GameDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadData();
+    // this.loadFakeData();
   }
 
   ngOnDestroy(): void {
     this.componentActive = false;
+  }
+
+  private loadData() {
+    const gameId = this.route.snapshot.params['id'];
+    this.isLoading = true;
+    this.dataService.getGameById(gameId)
+    .pipe(takeWhile(() => this.componentActive))
+    .subscribe((data: any) => {
+      this.game = data;
+      this.isLoading = false;
+    }, error => {
+      this.errorFromServer = true;
+      this.isLoading = false;
+    });
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/');
   }
 
   private loadFakeData() {
@@ -87,23 +106,5 @@ export class GameDetailComponent implements OnInit, OnDestroy {
         }
       }
     };
-  }
-
-  private loadData() {
-    const gameId = this.route.snapshot.params['id'];
-    this.isLoading = true;
-    this.dataService.getGameById(gameId)
-    .pipe(takeWhile(() => this.componentActive))
-    .subscribe((data: any) => {
-      this.game = data;
-      this.isLoading = false;
-    }, error => {
-      this.errorFromServer = true;
-      this.isLoading = false;
-    });
-  }
-
-  goBack() {
-    this.router.navigateByUrl('/');
   }
 }

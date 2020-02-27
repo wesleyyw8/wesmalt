@@ -19,6 +19,7 @@ export class GamesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadData();
+    //this.loadFakeData();
   }
 
   ngOnDestroy(): void {
@@ -36,6 +37,10 @@ export class GamesComponent implements OnInit, OnDestroy {
       this.errorFromServer = true;
       this.isLoading = false;
     });
+  }
+
+  onViewDetails(id) {
+    this.router.navigateByUrl('/games/'+id);
   }
 
   private loadFakeData() {
@@ -1073,9 +1078,4 @@ export class GamesComponent implements OnInit, OnDestroy {
       }
     ];
   }
-
-  onViewDetails(id) {
-    this.router.navigateByUrl('/games/'+id);
-  }
-
 }

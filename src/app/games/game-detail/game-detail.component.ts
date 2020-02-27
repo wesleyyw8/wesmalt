@@ -1,23 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-game-detail',
   templateUrl: './game-detail.component.html',
   styleUrls: ['./game-detail.component.less']
 })
-export class GameDetailComponent implements OnInit {
+export class GameDetailComponent implements OnInit, OnDestroy {
   public game;
   public errorFromServer: boolean = false;
   public isLoading = true;
+  componentActive = true;
 
   constructor(private dataService: DataService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const gameId = this.route.snapshot.params['id'];
+    this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.componentActive = false;
+  }
+
+  private loadFakeData() {
     this.game = {
       "id": "yggdrasil-joker-millions",
       "slug": "joker-millions",
@@ -78,11 +87,19 @@ export class GameDetailComponent implements OnInit {
         }
       }
     };
-    this.dataService.getGameById(gameId).subscribe((data: any) => {
+  }
+
+  private loadData() {
+    const gameId = this.route.snapshot.params['id'];
+    this.isLoading = true;
+    this.dataService.getGameById(gameId)
+    .pipe(takeWhile(() => this.componentActive))
+    .subscribe((data: any) => {
       this.game = data;
-      // console.log(data);
+      this.isLoading = false;
     }, error => {
       this.errorFromServer = true;
+      this.isLoading = false;
     });
   }
 

@@ -51,7 +51,7 @@
   </div>
 </div>
 
-<div class="loader-container" *ngIf="gamesCategories.length === 0 && !errorFromServer">
+<div class="loader-container" *ngIf="isLoading">
   <app-loader></app-loader>
 </div>
 

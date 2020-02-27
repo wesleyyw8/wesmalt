@@ -1,16 +1,19 @@
 import { DataService } from '../data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.less']
 })
-export class GamesComponent implements OnInit {
+export class GamesComponent implements OnInit, OnDestroy {
   public gamesCategories = [];
   public errorFromServer: boolean = false;
   public isLoading = false;
+  componentActive = true;
+
   constructor(private dataService: DataService,
               private router: Router) { }
 
@@ -18,9 +21,13 @@ export class GamesComponent implements OnInit {
     this.loadData();
   }
 
+  ngOnDestroy(): void {
+    this.componentActive = false;
+  }
+
   private loadData() {
     this.isLoading = true;
-    this.dataService.getGameCategories().subscribe((data: any) => {
+    this.dataService.getGameCategories().pipe(takeWhile(() => this.componentActive)).subscribe((data: any) => {
       this.gamesCategories = data;
       this.isLoading = false;
     }, error => {

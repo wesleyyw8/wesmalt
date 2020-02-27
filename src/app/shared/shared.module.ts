@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterListPipe } from './filter-list/filter-list.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [FilterListPipe],
+  declarations: [FilterListPipe, LoaderComponent],
   imports: [
     CommonModule
   ],
   exports: [
-    FilterListPipe
+    FilterListPipe,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

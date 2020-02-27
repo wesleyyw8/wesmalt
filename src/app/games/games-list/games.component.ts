@@ -9,11 +9,28 @@ import { Router } from '@angular/router';
 })
 export class GamesComponent implements OnInit {
   public gamesCategories = [];
+  public errorFromServer: boolean = false;
+  public isLoading = false;
   constructor(private dataService: DataService,
               private router: Router) { }
 
   ngOnInit() {
-    this.gamesCategories = [
+    this.loadData();
+  }
+
+  private loadData() {
+    this.isLoading = true;
+    this.dataService.getGameCategories().subscribe((data: any) => {
+      this.gamesCategories = data;
+      this.isLoading = false;
+    }, error => {
+      this.errorFromServer = true;
+      this.isLoading = false;
+    });
+  }
+
+  private loadFakeData() {
+     this.gamesCategories = [
       {
         "name": "Popular Games",
         "order": 0,
@@ -1046,13 +1063,6 @@ export class GamesComponent implements OnInit {
         }
       }
     ];
-
-    // this.dataService.getGameCategories().subscribe((data: any) => {
-    //   this.gamesCategories = data;
-    //   console.log(data);
-    // }, error => {
-    //   console.log(error);
-    // });
   }
 
   onViewDetails(id) {

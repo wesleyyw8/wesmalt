@@ -18,7 +18,7 @@ export class DataService {
     return this.http.get<any>(`${this.url}/games/${id}?brand=cherrycasino.desktop&locale=en`)
     .pipe(
       tap(result => {
-        console.log('retrieving data from server:', result)
+        console.log('retrieving games by id from server:', result);
       }),
       catchError(err => this.handleHttpError(err))
     );
@@ -30,12 +30,12 @@ export class DataService {
       groupBy(data => data._embedded.game_categories),
       map(result => result.key),
       tap(result => {
-
+        console.log('retrieving game-categories from server:', result);
       }),
       catchError(err => this.handleHttpError(err))
     );
   }
-  //_embedded  game_categories
+
   private handleHttpError(err: HttpErrorResponse): Observable<any> {
     return throwError('dataError!!');
   }

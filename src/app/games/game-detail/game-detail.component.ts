@@ -9,6 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GameDetailComponent implements OnInit {
   public game;
+  public errorFromServer: boolean = false;
+  public isLoading = true;
+
   constructor(private dataService: DataService,
               private router: Router,
               private route: ActivatedRoute) { }
@@ -75,12 +78,12 @@ export class GameDetailComponent implements OnInit {
         }
       }
     };
-    // this.dataService.getGameById(gameId).subscribe((data: any) => {
-    //   this.game = data;
-    //   // console.log(data);
-    // }, error => {
-    //   console.log(error);
-    // });
+    this.dataService.getGameById(gameId).subscribe((data: any) => {
+      this.game = data;
+      // console.log(data);
+    }, error => {
+      this.errorFromServer = true;
+    });
   }
 
   goBack() {
